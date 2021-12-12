@@ -140,7 +140,7 @@ STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
 'rweb/static',
 ]
-django_heroku.settings(locals())
+heroku config:set DISABLE_COLLECTSTATIC=1
 # Media settings
 
 MEDIA_URL = '/media/'
