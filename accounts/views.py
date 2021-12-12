@@ -233,6 +233,21 @@ def my_orders(request):
     }
     return render(request, 'accounts/my_orders.html', context)
 
+@login_required(login_url='login')
+def my_sellings(request):
+    return render(request, 'accounts/my_sellings.html')
+
+@login_required(login_url='login')
+def received_orders(request):
+    return render(request, 'accounts/received_orders.html')
+
+@login_required(login_url='login')
+def new_product(request):
+    return render(request, 'accounts/new_product.html')
+
+@login_required(login_url='login')
+def my_products(request):
+    return render(request, 'accounts/my_products.html')
 
 @login_required(login_url='login')
 def edit_profile(request):

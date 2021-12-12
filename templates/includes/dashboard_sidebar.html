@@ -2,7 +2,9 @@
   <!--   SIDEBAR   -->
   <ul class="list-group">
     <a class="list-group-item {% if '/accounts/' == request.path %}active{% endif %}" href="{% url 'dashboard' %}"> Dashboard </a>
-    <a class="list-group-item {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}"> My Orders </a>
+    <a class="list-group-item {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}"> Sent Orders </a>
+    <a class="list-group-item {% if '/received_orders/' in request.path %}active{% endif %}" href="{% url 'received_orders' %}"> Received Orders </a>
+    <a class="list-group-item {% if '/my_sellings/' in request.path %}active{% endif %}" href="{% url 'my_sellings' %}"> My Shop </a>
     <a class="list-group-item {% if '/edit_profile/' in request.path %}active{% endif %}" href="{% url 'edit_profile' %}"> Edit Profile </a>
     <a class="list-group-item {% if '/change_password/' in request.path %}active{% endif %}" href="{% url 'change_password' %}"> Change Password </a>
   </ul>

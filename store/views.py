@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, ReviewRating
+from .models import Product, ReviewRating, ProductGallery
 from category.models import category
 from carts.models import CartItem
 from django.db.models import Q
@@ -11,35 +11,30 @@ from .forms import ReviewForm
 from django.contrib import messages
 from orders.models import OrderProduct
 
-# Create your views here.
-def store(request, category_slug = None):
 
-	categories = None
-	products = None
+def store(request, category_slug=None):
+    categories = None
+    products = None
 
-	if category_slug != None:
-		categories = get_object_or_404(category, slug = category_slug)
-		products = Product.objects.filter(category = categories, is_available = True)
-		paginator = Paginator(products, 4)
-		page = request.GET.get('page')
-		paged_products = paginator.get_page(page)
-		products_count = products.count()
-	else:
+    if category_slug != None:
+        categories = get_object_or_404(category, slug=category_slug)
+        products = Product.objects.filter(category=categories, is_available=True)
+        paginator = Paginator(products, 1)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
+        product_count = products.count()
+    else:
+        products = Product.objects.all().filter(is_available=True).order_by('id')
+        paginator = Paginator(products, 3)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
+        product_count = products.count()
 
-		products = Product.objects.all().filter(is_available = True).order_by('id')
-		paginator = Paginator(products, 6)
-		page = request.GET.get('page')
-		paged_products = paginator.get_page(page)
-		products_count = products.count()
-		
-
-
-	context = {
-	'products': paged_products,
-	'products_count': products_count
-	}
-	return render(request, 'store/store.html', context )
-
+    context = {
+        'products': paged_products,
+        'product_count': product_count,
+    }
+    return render(request, 'store/store.html', context)
 
 
 def product_detail(request, category_slug, product_slug):
@@ -60,27 +55,31 @@ def product_detail(request, category_slug, product_slug):
     # Get the reviews
     reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
 
+    # Get the product gallery
+    product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
+
     context = {
         'single_product': single_product,
         'in_cart'       : in_cart,
         'orderproduct': orderproduct,
         'reviews': reviews,
+        'product_gallery': product_gallery,
     }
     return render(request, 'store/product_detail.html', context)
 
+
 def search(request):
-	if 'keyword' in request.GET:
-		keyword = request.GET['keyword']
-		if keyword:
-			products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains = keyword))
-			products_count = products.count()
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
+            product_count = products.count()
+    context = {
+        'products': products,
+        'product_count': product_count,
+    }
+    return render(request, 'store/store.html', context)
 
-	context = {
-		'products':products,
-		'products_count':products.count()
-
-	}
-	return render(request, 'store/store.html', context)
 
 def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')
