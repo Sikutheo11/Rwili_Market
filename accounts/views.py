@@ -119,10 +119,10 @@ def login(request):
                     nextPage = params['next']
                     return redirect(nextPage)
             except:
-                return redirect('dashboard')
+                return redirect('store')
         else:
             messages.error(request, 'Invalid login credentials')
-            return redirect('login')
+            return redirect('store')
     return render(request, 'accounts/login.html')
 
 
@@ -130,7 +130,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are logged out.')
-    return redirect('login')
+    return redirect('home')
 
 
 def activate(request, uidb64, token):

@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default= True, cast = bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['rwili-market-env.eba-5pk2c4un.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Rweb.wsgi.application'
+# WSGI_APPLICATION = 'Rweb.wsgi.application'
 AUTH_USER_MODEL = 'accounts.Account'
 
 
@@ -140,7 +140,6 @@ STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
 'rweb/static',
 ]
-heroku config:set DISABLE_COLLECTSTATIC=1
 # Media settings
 
 MEDIA_URL = '/media/'
