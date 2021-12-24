@@ -1,1 +1,1 @@
-web gunicorn Rweb.wsgi:apllication --log-file -
+web: gunicorn Rweb.wsgi
