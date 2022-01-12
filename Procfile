@@ -1,1 +1,1 @@
-web: gunicorn Rweb.wsgi
+web:gunicorn Rweb.wsgi
