@@ -11,6 +11,7 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -145,6 +146,7 @@ os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+django_heroku.settings(locals())
 
 
 # Default primary key field type
