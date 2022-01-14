@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
 from orders.models import Order, OrderProduct
+from store.forms import ProductForm
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -243,7 +244,15 @@ def received_orders(request):
 
 @login_required(login_url='login')
 def new_product(request):
-    return render(request, 'accounts/new_product.html')
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = ProductForm()
+  
+    context= {
+        'form':form
+    } 
+    return render(request, 'accounts/new_product.html', context)
 
 @login_required(login_url='login')
 def my_products(request):

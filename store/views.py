@@ -8,6 +8,7 @@ from carts.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from .forms import ReviewForm
+from .forms import ProductForm
 from django.contrib import messages
 from orders.models import OrderProduct
 
@@ -103,3 +104,4 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
+
