@@ -244,11 +244,12 @@ def received_orders(request):
 
 @login_required(login_url='login')
 def new_product(request):
-    form = ProductForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        form = ProductForm(request.POST or None, request.FILES or None)        
+        if form.is_valid():
+            form.save()            
+    else:
         form = ProductForm()
-  
     context= {
         'form':form
     } 
