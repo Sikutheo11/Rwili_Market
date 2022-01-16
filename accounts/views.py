@@ -245,7 +245,7 @@ def received_orders(request):
 @login_required(login_url='login')
 def new_product(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST or None, request.FILES or None)        
+        form = ProductForm(request.POST, request.FILES)        
         if form.is_valid():
             form.save()            
     else:
