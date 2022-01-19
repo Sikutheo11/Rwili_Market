@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
 ALLOWED_HOSTS = ['rwili.herokuapp.com/','127.0.0.1']
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders', 
-    'admin_honeypot',
+    'admin_honeypot', 
 ]
 
 MIDDLEWARE = [
@@ -138,13 +138,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 #STATIC_ROOT = BASE_DIR /'static'
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'static')
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 # STATICFILES_STORAGE = 'e'
 # Media settings
 
