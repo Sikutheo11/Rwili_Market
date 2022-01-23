@@ -8,7 +8,7 @@
 	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
       <article class="card-body">
       	{% include 'includes/alerts.html' %}
-     <form method="POST">
+     <form method="POST" action="{% url 'new_product' %}" enctype='multipart/form-data'>
       {% csrf_token %}
       {{ form|crispy }} 
       {{form.errors}}

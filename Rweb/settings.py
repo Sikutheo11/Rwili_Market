@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'carts',
     'orders', 
     'admin_honeypot', 
+
 ]
 
 MIDDLEWARE = [
@@ -93,11 +94,30 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         'NAME': os.path.join(str(BASE_DIR), 'db.sqlite3'),
+#     },
+
+    #  'users_db': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'rweb',
+    #     'USER': 'Sikutheo',
+    #     'PASSWORD': 'Rusgrdsb11@',
+    #     'HOST': 'localhost',
+    #     'PORT': '3307',
+    # }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': os.path.join(str(BASE_DIR), 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rweb',
+        'USER': 'Sikutheo',
+        'PASSWORD': 'Rusgrdsb11@',
+        'HOST': 'localhost',
+        'PORT': '3307',
     }
 }
 

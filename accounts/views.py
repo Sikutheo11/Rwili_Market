@@ -240,6 +240,10 @@ def my_sellings(request):
 
 @login_required(login_url='login')
 def received_orders(request):
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
+    context = {
+        'orders': orders,
+    }
     return render(request, 'accounts/received_orders.html')
 
 @login_required(login_url='login')
@@ -247,12 +251,14 @@ def new_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)        
         if form.is_valid():
-            form.save()            
+            form.save() 
+            return redirect('my_sellings')           
     else:
         form = ProductForm()
     context= {
         'form':form
     } 
+    # return redirect('my_sellings')
     return render(request, 'accounts/new_product.html', context)
 
 @login_required(login_url='login')
