@@ -39,53 +39,41 @@
       </div>
       <div class="form-row">
         <div class="col form-group">
-            <!-- <select name="igit" class="form-control" required>
-              <option value="" disabled selected>Select Country</option>
-              {% for province in provinceloc %}
-              <option value="{{province.provincecode}}">{{ province.provincename}}</option>
-              {% endfor %} -->
-            <!-- s -->
-        </div>
-        <div class="col form-group">
-          <select name="igit" class="form-control" required>
-              <option value="" disabled selected>Select Province</option>
-              {% for province in provinceloc %}
-              <option value="{{province.provincecode}}">{{ province.provincename}}</option>
-              {% endfor %}
+           <label for="">Country</label>
+            <select name="igit" class="form-control" required>
+          
             </select>
         </div>
         <div class="col form-group">
+           <label for="">Province</label>
           <select name="igit" class="form-control" required>
-            <option value="" disabled selected>Select District</option>
-            {% for district in districtloc %}
-            <option value="{{district.districtcode}}">{{ district.districtname}}</option>
-            {% endfor %}
+              
+            </select>
+        </div>
+        <div class="col form-group">
+           <label for="">District</label>
+          <select name="igit" class="form-control" required>
+            
           </select>
         </div>
       </div>
       <div class="form-row">
         <div class="col form-group">
+           <label for="">Sector</label>
           <select name="igit" class="form-control" required>
-            <option value="" disabled selected>Select Sector</option>
-            {% for sector in sectorloc %}
-            <option value="{{sector.sectorID}}">{{ sector.sectorname}}</option>
-            {% endfor %}
+            
           </select>
         </div>
         <div class="col form-group">
+           <label for="">Cell</label>
           <select name="igit" class="form-control" required>
-            <option value="" disabled selected>Select Cell</option>
-            {% for cell in cellloc %}
-            <option value="{cell.cellID}}">{{ cell.cellname}}</option>
-            {% endfor %}
+            
           </select>
         </div>
         <div class="col form-group">
+           <label for="">Villages</label>
           <select name="igit" class="form-control" required>
-            <option value="" disabled selected>Select Village</option>
-            {% for village in villageloc %}
-            <option value="village.villageID}}">{{ village.villagename}}</option>
-            {% endfor %}
+            
           </select>
         </div>
       </div>
@@ -97,7 +85,10 @@
 </div> <!-- card.// -->
 
 	</aside> <!-- col.// -->
-	<aside class="col-lg-6">
+  <aside class="col-lg-1">
+  </aside>
+
+	<aside class="col-lg-5">
 
 		<div class="card">
 		<div class="card-body">

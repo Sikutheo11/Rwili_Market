@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Account
 from store.models import Product, Variation
+from django_countries.fields import CountryField
 
 
 
@@ -31,9 +32,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField(max_length=50)
-    address_line_1 = models.CharField(max_length=50)
-    address_line_2 = models.CharField(max_length=50, blank=True)
-    country = models.CharField(max_length=50)
+    country = CountryField(multiple=False)
     province = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
     sector = models.CharField(max_length=50)
@@ -53,11 +52,32 @@ class Order(models.Model):
         return f'{self.first_name} {self.last_name}'
 
     def full_address(self):
-        return f'{self.address_line_1} {self.address_line_2}'
+        return f'{self.district} {self.sector}'
 
     def __str__(self):
         return self.first_name
 
+class Address(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    # first_name = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    # last_name = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    # username = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    # email = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    # phone = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
+    country = CountryField(multiple=False)
+    province = models.CharField(max_length=50)
+    district = models.CharField(max_length=50)
+    sector = models.CharField(max_length=50)
+    cell = models.CharField(max_length=50)
+    village = models.CharField(max_length=50)
+    nearest_market = models.CharField(max_length = 50)
+    nearest_Agakiriro = models.CharField(max_length = 50)
+    save_info = models.BooleanField(default=False)
+    default = models.BooleanField(default=False)
+    use_default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.first_name
 
 class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

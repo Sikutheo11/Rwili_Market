@@ -1,5 +1,5 @@
 from django.db import models
-
+from django_countries.fields import CountryField
 # Create your models here.
 class Province(models.Model):
 	provincecode = models.IntegerField(primary_key = True)

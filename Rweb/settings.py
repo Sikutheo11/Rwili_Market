@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'carts',
     'orders', 
     'admin_honeypot',
-    'locations',  
+    'locations', 
+    'django_countries', 
 
 ]
 
