@@ -59,11 +59,6 @@ class Order(models.Model):
 
 class Address(models.Model):
     user = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    # first_name = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    # last_name = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    # username = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    # email = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
-    # phone = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     country = CountryField(multiple=False)
     province = models.CharField(max_length=50)
     district = models.CharField(max_length=50)
